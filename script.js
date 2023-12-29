@@ -8,7 +8,6 @@ function getComputerChoice(){
 }
 // console.log(getComputerChoice());
 function playRound(playerSelection, computerSelection) {
-    // your code here!
     let winner=0; //0 equals tie, 
                   //1 equals player won
                   //2 equals computer won.
@@ -34,8 +33,8 @@ function playRound(playerSelection, computerSelection) {
                 winner=2
             }
             else console.log("its a tie!");
-            // else return "its a tie!";
             break;
+
         case "scissor":
             if(computerSelection=="paper"){
                 console.log("You win! " +playerSelection +" beats "+computerSelection); 
@@ -46,8 +45,8 @@ function playRound(playerSelection, computerSelection) {
                 winner=2;
             }
             else console.log("its a tie!");
-            // else return "its a tie!";
             break;
+            
         default:
             break;
     }
