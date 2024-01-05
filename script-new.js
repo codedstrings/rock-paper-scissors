@@ -12,7 +12,6 @@ function getComputerChoice() {
 
 
 function playRound(playerSelection) {
-    console.log('Round' + (round + 1));
     let computerSelection = getComputerChoice()
     console.log(
         'you selected: ' +
@@ -20,7 +19,8 @@ function playRound(playerSelection) {
         ' and computer selected: ' +
         computerSelection
     )
-    let winner = 0 //0 equals tie,
+    let winner = 0;
+    //0 equals tie,
     //1 equals player won
     //2 equals computer won.
     switch (playerSelection) {
@@ -70,18 +70,19 @@ function playRound(playerSelection) {
     }
     return winner
 }
-
-function scoreboard(winner) {
-    //best of 5
-    // console.log('Round' + (round + 1))
+function removeListeners(){
+    rockBtn.removeEventListener('click', chooseRock);
+    paperBtn.removeEventListener('click', choosePaper);
+    scissorBtn.removeEventListener('click', chooseScissor);
+}
+function scoreboard1(winner) {
+    //best of 5 
     if (round < 5) {
         //update scoreboard and round based on the winner.
         if (winner == 1) {
             playerscore++
-            // round++;
         } else if (winner == 2) {
             computerscore++
-            // round++;
         }
         //nothing is done for a tie. ie winner==0;
         console.log(
@@ -90,67 +91,42 @@ function scoreboard(winner) {
         round++;
     }
     if (round >= 5) { 
-        rockBtn.removeEventListener('click', chooseRock)
-        paperBtn.removeEventListener('click', choosePaper)
-        scissorBtn.removeEventListener('click', chooseScissor)
-
+        removeListeners();
         // printing the winner to the console.
         if (playerscore == computerscore) console.log("It's a tie, play again")
         else if (playerscore > computerscore) console.log('You win the game!')
         else console.log('You lost to a computer!')
     }
 }
-// function scoreboard2(winner) {
+function scoreboard2(winner) {
+    //update scoreboard and round based on the winner who scores 5 first.
+    if (winner == 1) {
+        playerscore++;
+    } else if (winner == 2) {
+        computerscore++;
+    }
+    console.log(
+        'scoreboard: you-' + playerscore + ', computer-' + computerscore
+    )
+    round++;
 
-//     if (round < 5) {
-//         //update scoreboard and round based on the winner.
-//         if (winner == 1) {
-//             playerscore++
-//             // round++;
-//         } else if (winner == 2) {
-//             computerscore++
-//             // round++;
-//         }
-//         //nothing is done for a tie. ie winner==0;
-//         console.log(
-//             'scoreboard: you-' + playerscore + ', computer-' + computerscore
-//         )
-//         round++;
-//     }
-//     if (round >= 5) { 
-//         rockBtn.removeEventListener('click', chooseRock)
-//         paperBtn.removeEventListener('click', choosePaper)
-//         scissorBtn.removeEventListener('click', chooseScissor)
+    //printing the winner
+    if (playerscore === 5) {
+        console.log("You win the game. Reload to play again");
+        removeListeners();
+    }
+    if (computerscore === 5) {
+        console.log("You lost to a computer! Reload to play again");
+        removeListeners();
+    }
+}
 
-//         // printing the winner to the console.
-//         if (playerscore == computerscore) console.log("It's a tie, play again")
-//         else if (playerscore > computerscore) console.log('You win the game!')
-//         else console.log('You lost to a computer!')
-//     }
-// }
 
-// function game(playerSelection) {
-//     if (round < 5) {
-//         computerSelection = getComputerChoice()
-//         let winner = playRound(playerSelection)
-//         scoreboard(winner)
-//     }
-
-//     if (round >= 5) {
-//         rockBtn.removeEventListener('click', chooseRock)
-//         paperBtn.removeEventListener('click', choosePaper)
-//         scissorBtn.removeEventListener('click', chooseScissor)
-
-//         // printing the winner to the console.
-//         if (playerscore == computerscore) console.log("It's a tie, play again")
-//         else if (playerscore > computerscore) console.log('You win the game!')
-//         else console.log('You lost to a computer!')
-//     }
-// }
 function game(playerSelection) {
+    console.log('Round ' + (round + 1));
     computerSelection = getComputerChoice();
     let winner = playRound(playerSelection);
-    scoreboard(winner);
+    scoreboard2(winner);
 }
 
 function chooseRock() {
@@ -163,12 +139,10 @@ function chooseScissor() {
     game('scissor');
 }
 
-let rockBtn = document.querySelector('.rock')
-let paperBtn = document.querySelector('.paper')
-let scissorBtn = document.querySelector('.scissors')
+let rockBtn = document.querySelector('.rock');
+let paperBtn = document.querySelector('.paper');
+let scissorBtn = document.querySelector('.scissors');
 
-rockBtn.addEventListener('click', chooseRock)
-paperBtn.addEventListener('click', choosePaper)
-scissorBtn.addEventListener('click', chooseScissor)
-
-//   game() is not required and can be removed
+rockBtn.addEventListener('click', chooseRock);
+paperBtn.addEventListener('click', choosePaper);
+scissorBtn.addEventListener('click', chooseScissor);
