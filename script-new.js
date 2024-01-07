@@ -12,33 +12,30 @@ function getComputerChoice() {
 
 
 function playRound(playerSelection) {
+    //get computer selection
     let computerSelection = getComputerChoice();
-    console.log(
-        'you selected: ' +
-        playerSelection +
-        ' and computer selected: ' +
-        computerSelection
-    )
+    //print both players selection
+    let selectionStr= 'You selected: '+playerSelection +' and computer selected: ' + computerSelection;
+    console.log(selectionStr);
+    document.querySelector('.selection').textContent=selectionStr;
+
     let winner = 0;
     //0 equals tie,
     //1 equals player won
     //2 equals computer won.
-    if(playerSelection===computerSelection){
+    if (playerSelection === computerSelection) {
         console.log("it's a tie!");
     }
-    else if((playerSelection == 'rock' && computerSelection == 'scissor') ||
-    (playerSelection == 'scissor' && computerSelection == 'paper') ||
-    (playerSelection == 'paper' && computerSelection == 'rock')){
-        console.log(
-            'You win! ' + playerSelection + ' beats ' + computerSelection
-        );
-        winner=1;
+    else if (
+        (playerSelection == 'rock' && computerSelection == 'scissor') ||
+        (playerSelection == 'scissor' && computerSelection == 'paper') ||
+        (playerSelection == 'paper' && computerSelection == 'rock')) {
+        console.log('You win! ' + playerSelection + ' beats ' + computerSelection);
+        winner = 1;
     }
     else {
-        console.log(
-            'You lose. ' + computerSelection + ' beats ' + playerSelection
-        );
-        winner=2;
+        console.log('You lose. ' + computerSelection + ' beats ' + playerSelection);
+        winner = 2;
     }
     return winner;
 }
