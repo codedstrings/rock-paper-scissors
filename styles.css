@@ -4,6 +4,7 @@
 .roundpara{
     text-decoration-line: underline;
     text-decoration-style: dotted;
+    font-weight: bold;
 }
 .scoreboard{
     font-weight: bold;
