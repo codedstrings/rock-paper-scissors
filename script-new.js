@@ -12,7 +12,7 @@ function getComputerChoice() {
 
 
 function playRound(playerSelection) {
-    let computerSelection = getComputerChoice()
+    let computerSelection = getComputerChoice();
     console.log(
         'you selected: ' +
         playerSelection +
@@ -23,52 +23,24 @@ function playRound(playerSelection) {
     //0 equals tie,
     //1 equals player won
     //2 equals computer won.
-    switch (playerSelection) {
-        case 'rock':
-            if (computerSelection == 'scissor') {
-                console.log(
-                    'You win! ' + playerSelection + ' beats ' + computerSelection
-                )
-                winner = 1
-            } else if (computerSelection == 'paper') {
-                console.log(
-                    'You lose. ' + computerSelection + ' beats ' + playerSelection
-                )
-                winner = 2
-            } else console.log('its a tie!')
-            break
-        case 'paper':
-            if (computerSelection == 'rock') {
-                console.log(
-                    'You win! ' + playerSelection + ' beats ' + computerSelection
-                )
-                winner = 1
-            } else if (computerSelection == 'scissor') {
-                console.log(
-                    'You lose. ' + computerSelection + ' beats ' + playerSelection
-                )
-                winner = 2
-            } else console.log('its a tie!')
-            break
-
-        case 'scissor':
-            if (computerSelection == 'paper') {
-                console.log(
-                    'You win! ' + playerSelection + ' beats ' + computerSelection
-                )
-                winner = 1
-            } else if (computerSelection == 'rock') {
-                console.log(
-                    'You lose. ' + computerSelection + ' beats ' + playerSelection
-                )
-                winner = 2
-            } else console.log('its a tie!')
-            break
-
-        default:
-            break
+    if(playerSelection===computerSelection){
+        console.log("it's a tie!");
     }
-    return winner
+    else if((playerSelection == 'rock' && computerSelection == 'scissor') ||
+    (playerSelection == 'scissor' && computerSelection == 'paper') ||
+    (playerSelection == 'paper' && computerSelection == 'rock')){
+        console.log(
+            'You win! ' + playerSelection + ' beats ' + computerSelection
+        );
+        winner=1;
+    }
+    else {
+        console.log(
+            'You lose. ' + computerSelection + ' beats ' + playerSelection
+        );
+        winner=2;
+    }
+    return winner;
 }
 function removeListeners(){
     rockBtn.removeEventListener('click', chooseRock);
@@ -123,7 +95,13 @@ function scoreboard2(winner) {
 
 
 function game(playerSelection) {
-    console.log('Round ' + (round + 1));
+    let Roundstr='Round ' + (round + 1);
+    //to display the rounds
+    // let outputdiv=document.querySelector('.output');
+    // let roundpara=document.createElement('p');
+    // roundpara.textContent=Roundstr;
+    // outputdiv.appendChild(roundpara);
+    console.log(Roundstr);
     computerSelection = getComputerChoice();
     let winner = playRound(playerSelection);
     scoreboard2(winner);
