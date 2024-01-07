@@ -1,11 +1,13 @@
 *{
     box-sizing: border-box;
 }
-.roundWinner{
-   font-weight: bold;
+.roundpara{
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
 }
 .scoreboard{
     font-weight: bold;
+    font-size: large;
 }
 
 .finalWinner{
