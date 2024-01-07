@@ -97,10 +97,8 @@ function scoreboard2(winner) {
 function game(playerSelection) {
     let Roundstr='Round ' + (round + 1);
     //to display the rounds
-    // let outputdiv=document.querySelector('.output');
-    // let roundpara=document.createElement('p');
-    // roundpara.textContent=Roundstr;
-    // outputdiv.appendChild(roundpara);
+    let roundpara=document.querySelector('.roundpara');
+    roundpara.textContent=Roundstr;
     console.log(Roundstr);
     computerSelection = getComputerChoice();
     let winner = playRound(playerSelection);
