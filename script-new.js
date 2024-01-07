@@ -20,23 +20,26 @@ function playRound(playerSelection) {
     document.querySelector('.selection').textContent=selectionStr;
 
     let winner = 0;
+    let roundWinner='';
     //0 equals tie,
     //1 equals player won
     //2 equals computer won.
     if (playerSelection === computerSelection) {
-        console.log("it's a tie!");
+        roundWinner="it's a tie!";
     }
     else if (
         (playerSelection == 'rock' && computerSelection == 'scissor') ||
         (playerSelection == 'scissor' && computerSelection == 'paper') ||
         (playerSelection == 'paper' && computerSelection == 'rock')) {
-        console.log('You win! ' + playerSelection + ' beats ' + computerSelection);
+        roundWinner='You win! ' + playerSelection + ' beats ' + computerSelection;
         winner = 1;
     }
     else {
-        console.log('You lose. ' + computerSelection + ' beats ' + playerSelection);
+        roundWinner='You lose. ' + computerSelection + ' beats ' + playerSelection;
         winner = 2;
     }
+    console.log(roundWinner);
+    document.querySelector('.roundWinner').textContent=roundWinner;
     return winner;
 }
 function removeListeners(){
@@ -68,6 +71,7 @@ function scoreboard1(winner) {
     }
 }
 function scoreboard2(winner) {
+    let finalWinnerText='';
     //update scoreboard and round based on the winner who scores 5 first.
     if (winner == 1) {
         playerscore++;
@@ -77,15 +81,22 @@ function scoreboard2(winner) {
     console.log(
         'scoreboard: you-' + playerscore + ', computer-' + computerscore
     )
+    document.querySelector('.playerscore-span').textContent=playerscore;
+    document.querySelector('.computerscore-span').textContent=computerscore;
     round++;
 
     //printing the winner
     if (playerscore === 5) {
-        console.log("You win the game. Reload to play again");
+        finalWinnerText="You win the game! Reload to play again";
+        console.log(finalWinnerText);
+        document.querySelector('.finalWinner').textContent=finalWinnerText;
+
         removeListeners();
     }
     if (computerscore === 5) {
-        console.log("You lost to a computer! Reload to play again");
+        finalWinnerText="You lost to a computer! Reload to play again";
+        console.log(finalWinnerText);
+        document.querySelector('.finalWinner').textContent=finalWinnerText;
         removeListeners();
     }
 }
