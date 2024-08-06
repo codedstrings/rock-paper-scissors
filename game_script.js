@@ -1,6 +1,9 @@
 let round = 0;
 let playerscore = 0;
 let computerscore = 0;
+let isBestOfFive = true;
+const gameTypeDisplay = document.querySelector('.game-type');
+gameTypeDisplay.innerText = (isBestOfFive)?'(Best score out of 5 rounds wins)':'(Player who scores 5 points first wins)'
 
 function getComputerChoice() {
     let min = 0,
@@ -122,7 +125,12 @@ function game(playerSelection) {
     console.log(Roundstr);
     computerSelection = getComputerChoice();
     let winner = playRound(playerSelection);
-    scoreboard1(winner);
+    if(isBestOfFive){
+        scoreboard1(winner);
+    }
+    else{
+        scoreboard2(winner);
+    }
 }
 
 function chooseRock() {
