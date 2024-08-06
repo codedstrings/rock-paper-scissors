@@ -59,15 +59,27 @@ function scoreboard1(winner) {
         //nothing is done for a tie. ie winner==0;
         console.log(
             'scoreboard: you-' + playerscore + ', computer-' + computerscore
-        )
+        );
+        document.querySelector('.playerscore-span').textContent=playerscore;
+        document.querySelector('.computerscore-span').textContent=computerscore;
         round++;
     }
     if (round >= 5) { 
         removeListeners();
         // printing the winner to the console.
-        if (playerscore == computerscore) console.log("It's a tie, play again")
-        else if (playerscore > computerscore) console.log('You win the game!')
-        else console.log('You lost to a computer!')
+        let finalWinnerText=" ";
+        if (playerscore == computerscore) {
+            finalWinnerText = "It's a tie, play again";
+        }
+        else if (playerscore > computerscore) {
+            finalWinnerText = 'You win the game!';
+        }
+        else{
+            finalWinnerText = 'You lost to a computer!';
+        } 
+        console.log(finalWinnerText);
+        document.querySelector('.finalWinner').textContent=finalWinnerText;
+        
     }
 }
 function scoreboard2(winner) {
@@ -110,7 +122,7 @@ function game(playerSelection) {
     console.log(Roundstr);
     computerSelection = getComputerChoice();
     let winner = playRound(playerSelection);
-    scoreboard2(winner);
+    scoreboard1(winner);
 }
 
 function chooseRock() {
